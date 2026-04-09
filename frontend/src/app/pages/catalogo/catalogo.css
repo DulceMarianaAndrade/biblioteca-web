@@ -1,0 +1,80 @@
+.grid-libros {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.libro-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.libro-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.libro-info {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.categoria {
+  font-size: 0.75rem;
+  color: var(--verde);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.libro-info h3 {
+  font-size: 1rem;
+  color: var(--cafe-oscuro);
+}
+
+.autor {
+  font-size: 0.85rem;
+  color: var(--cafe-medio);
+  font-style: italic;
+}
+
+.descripcion {
+  font-size: 0.85rem;
+  color: var(--gris-texto);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.libro-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.8rem;
+}
+
+.precio {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cafe-oscuro);
+}
+
+.sin-stock {
+  color: #8b2020;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.agotado {
+  opacity: 0.7;
+}
+
+.estado-msg {
+  text-align: center;
+  padding: 2rem;
+  color: var(--cafe-medio);
+  font-size: 1rem;
+}

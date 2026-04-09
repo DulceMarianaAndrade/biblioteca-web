@@ -1,0 +1,48 @@
+<div class="contenedor">
+  <a routerLink="/catalogo" class="volver">Volver al catálogo</a>
+
+  @if (cargando()) {
+    <p class="estado-msg">Cargando libro...</p>
+  }
+
+  @if (error()) {
+    <p class="estado-msg error-msg">{{ error() }}</p>
+  }
+
+  @if (libro()) {
+    <div class="detalle-card">
+      <div class="detalle-imagen">
+        <img [src]="'assets/' + libro()!.imagen" [alt]="libro()!.nombre" />
+      </div>
+      <div class="detalle-info">
+        <span class="categoria">{{ libro()!.categoria | uppercase }}</span>
+        <h1>{{ libro()!.nombre | titlecase }}</h1>
+        <p class="autor">{{ libro()!.autor }}</p>
+        <p class="edicion">Edición: {{ libro()!.edicion }}</p>
+        <p class="descripcion">{{ libro()!.descripcion }}</p>
+
+        <div class="detalle-meta">
+          <span>Stock disponible: <strong>{{ libro()!.stock }}</strong></span>
+          @if (libro()!.disponibilidad) {
+            <span class="disponible">Disponible</span>
+          } @else {
+            <span class="agotado">Agotado</span>
+          }
+        </div>
+
+        <div class="detalle-footer">
+          <span class="precio">{{ libro()!.precio | currency:'MXN' }}</span>
+          @if (libro()!.disponibilidad) {
+            <button class="btn-primary" (click)="agregarAlCarrito()">
+              Agregar al carrito
+            </button>
+          }
+        </div>
+
+        @if (agregado()) {
+          <p class="confirmacion">Libro agregado al carrito.</p>
+        }
+      </div>
+    </div>
+  }
+</div>

@@ -1,0 +1,22 @@
+<nav class="navbar">
+  <div class="navbar-logo">
+    <a routerLink="/">
+      <img src="imagenes/logo.png" alt="Biblioteca Digital" class="logo-img" />
+    </a>
+  </div>
+
+  <ul class="navbar-links">
+    <li><a routerLink="/" routerLinkActive="activo" [routerLinkActiveOptions]="{exact:true}">Inicio</a></li>
+    <li><a routerLink="/catalogo" routerLinkActive="activo">Catálogo</a></li>
+    <li><a routerLink="/agregar" routerLinkActive="activo">Agregar Libro</a></li>
+    <li><a routerLink="/contacto" routerLinkActive="activo">Contacto</a></li>
+    <li>
+      <a routerLink="/carrito" routerLinkActive="activo" class="carrito-btn">
+        🛒 Carrito
+        @if (carrito.totalProductos() > 0) {
+          <span class="badge">{{ carrito.totalProductos() }}</span>
+        }
+      </a>
+    </li>
+  </ul>
+</nav>

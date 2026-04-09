@@ -1,0 +1,42 @@
+<div class="seccion-titulo">
+  <h2>Catálogo de Libros</h2>
+  <p>Encuentra el libro que estás buscando</p>
+</div>
+
+<div class="contenedor">
+  @if (cargando()) {
+    <p class="estado-msg">Cargando libros...</p>
+  }
+
+  @if (error()) {
+    <p class="estado-msg error-msg">{{ error() }}</p>
+  }
+
+  @if (!cargando() && libros().length === 0 && !error()) {
+    <p class="estado-msg">No hay libros disponibles.</p>
+  }
+
+  <div class="grid-libros">
+    @for (libro of libros(); track libro.id) {
+      <div class="card libro-card" [ngClass]="{'agotado': !libro.disponibilidad}">
+        <a [routerLink]="['/catalogo', libro.id]">
+          <img [src]="'assets' + libro.imagen" [alt]="libro.nombre" class="libro-img" />
+        </a>
+        <div class="libro-info">
+          <span class="categoria">{{ libro.categoria | uppercase }}</span>
+          <h3>{{ libro.nombre | titlecase }}</h3>
+          <p class="autor">{{ libro.autor }}</p>
+          <p class="descripcion">{{ libro.descripcion }}</p>
+          <div class="libro-footer">
+            <span class="precio">{{ libro.precio | currency:'MXN' }}</span>
+            @if (libro.disponibilidad) {
+              <button class="btn-primary" (click)="agregarAlCarrito(libro)">Agregar</button>
+            } @else {
+              <span class="sin-stock">Agotado</span>
+            }
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
