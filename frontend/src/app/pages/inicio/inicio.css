@@ -1,0 +1,42 @@
+.hero {
+  background-color: var(--cafe-oscuro);
+  background-image: linear-gradient(135deg, var(--cafe-oscuro) 60%, var(--verde) 100%);
+  color: var(--rosa);
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.hero-contenido h1 {
+  font-size: 2.8rem;
+  color: var(--rosa);
+  margin-bottom: 1rem;
+}
+
+.hero-contenido p {
+  font-size: 1.15rem;
+  color: var(--crema);
+  margin-bottom: 2rem;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.feature-card {
+  padding: 2rem;
+  text-align: center;
+  border-top: 4px solid var(--verde);
+}
+
+.feature-card h3 {
+  margin-bottom: 0.8rem;
+  color: var(--cafe-oscuro);
+}
+
+.feature-card p {
+  color: var(--cafe-medio);
+  line-height: 1.6;
+}
