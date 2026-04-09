@@ -78,3 +78,19 @@
   color: var(--cafe-medio);
   font-size: 1rem;
 }
+
+.botones button{
+    margin: 5px;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 20px;
+    background-color: #304f3e;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    justify-content: center;
+}
+
+.botones button:hover{
+    background-color: #d7b8ca;
+}
