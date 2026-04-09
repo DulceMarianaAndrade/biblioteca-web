@@ -12,7 +12,7 @@
   @if (libro()) {
     <div class="detalle-card">
       <div class="detalle-imagen">
-        <img [src]="'imagenes/' + libro()!.imagen" [alt]="libro()!.nombre" />
+        <img [src]="'assets/' + libro()!.imagen" [alt]="libro()!.nombre" />
       </div>
       <div class="detalle-info">
         <span class="categoria">{{ libro()!.categoria | uppercase }}</span>

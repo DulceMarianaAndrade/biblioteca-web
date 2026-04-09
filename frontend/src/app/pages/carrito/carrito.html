@@ -16,7 +16,7 @@
       <div class="lista-items">
         @for (item of carritoService.items(); track item.libro.id) {
           <div class="item-card card">
-            <img [src]="'imagenes/' + item.libro.imagen" [alt]="item.libro.nombre" class="item-img" />
+            <img [src]="'assets/' + item.libro.imagen" [alt]="item.libro.nombre" class="item-img" />
             <div class="item-info">
               <h3>{{ item.libro.nombre }}</h3>
               <p class="item-autor">{{ item.libro.autor }}</p>

@@ -20,7 +20,7 @@
     @for (libro of libros(); track libro.id) {
       <div class="card libro-card" [ngClass]="{'agotado': !libro.disponibilidad}">
         <a [routerLink]="['/catalogo', libro.id]">
-          <img [src]="'imagenes/' + libro.imagen" [alt]="libro.nombre" class="libro-img" />
+          <img [src]="'assets' + libro.imagen" [alt]="libro.nombre" class="libro-img" />
         </a>
         <div class="libro-info">
           <span class="categoria">{{ libro.categoria | uppercase }}</span>
