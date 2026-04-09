@@ -1,12 +1,12 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, UpperCasePipe, TitleCasePipe, NgClass } from '@angular/common';
 import { LibrosService, Libro } from '../../services/libros';
 import { CarritoService } from '../../services/carrito';
 
 @Component({
   selector: 'app-catalogo',
-  imports: [RouterLink, CurrencyPipe],
+  imports: [RouterLink, CurrencyPipe, UpperCasePipe, TitleCasePipe, NgClass],
   templateUrl: './catalogo.html',
   styleUrl: './catalogo.css'
 })
