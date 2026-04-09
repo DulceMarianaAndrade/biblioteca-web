@@ -1,0 +1,10 @@
+<h2>Catálogo de Libros</h2>
+
+<div *ngFor="let producto of productos">
+  <h3>{{ producto.nombre }}</h3>
+  <p>{{ producto.autor }}</p>
+  <p>{{ producto.precio | currency }}</p>
+  <p>{{ producto.descripcion }}</p>
+
+  <hr>
+</div>
