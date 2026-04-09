@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -6,12 +6,20 @@ export interface Libro {
   id: number;
   nombre: string;
   categoria: string;
-  marca: string;
+  autor: string;
+  edicion: string;
   precio: number;
   stock: number;
   imagen: string;
   descripcion: string;
-  disponible: boolean;
+  disponibilidad: boolean;
+}
+
+export interface Mensaje {
+  nombre: string;
+  correo: string;
+  asunto: string;
+  mensaje: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -32,7 +40,7 @@ export class LibrosService {
     return this.http.post(`${this.apiUrl}/productos`, libro);
   }
 
-  enviarMensaje(mensaje: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/mensajes`, mensaje);
+  enviarMensaje(mensaje: Mensaje): Observable<any> {
+    return this.http.post(`${this.apiUrl}/productos/contacto`, mensaje);
   }
 }

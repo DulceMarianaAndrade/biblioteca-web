@@ -1,1 +1,107 @@
-<p>contacto works!</p>
+<div class="seccion-titulo">
+  <h2>Contacto</h2>
+  <p>Escríbenos, con gusto te respondemos</p>
+</div>
+
+<div class="contenedor">
+  <div class="contacto-layout">
+
+    <div class="info-card card">
+      <h3>Información</h3>
+      <p>Librosphere es una biblioteca digital comprometida con acercar la lectura a todos.</p>
+      <div class="info-item">
+        <span class="info-label">Correo</span>
+        <span>contacto&#64;librosphere.mx</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Horario</span>
+        <span>Lunes a Viernes, 9am - 6pm</span>
+      </div>
+      <div class="info-item">
+        <span class="info-label">Ubicación</span>
+        <span>Aguascalientes, México</span>
+      </div>
+    </div>
+
+    <div class="form-card card">
+      @if (enviado()) {
+        <div class="exito-msg">
+          <h3>Mensaje enviado</h3>
+          <p>Gracias por contactarnos, te responderemos pronto.</p>
+          <button class="btn-primary" (click)="enviado.set(false)">Enviar otro mensaje</button>
+        </div>
+      }
+
+      @if (!enviado()) {
+        <form #contactoForm="ngForm" (ngSubmit)="enviar()">
+
+          <div class="form-group">
+            <label>Nombre</label>
+            <input
+              type="text"
+              name="nombre"
+              [(ngModel)]="mensaje.nombre"
+              required
+              placeholder="Tu nombre completo"
+              #nombreRef="ngModel"
+              [class.error]="nombreRef.invalid && nombreRef.touched"
+            />
+            @if (nombreRef.invalid && nombreRef.touched) {
+              <span class="error-msg">El nombre es obligatorio.</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Correo</label>
+            <input
+              type="email"
+              name="correo"
+              [(ngModel)]="mensaje.correo"
+              required
+              placeholder="tucorreo@ejemplo.com"
+              #correoRef="ngModel"
+              [class.error]="correoRef.invalid && correoRef.touched"
+            />
+            @if (correoRef.invalid && correoRef.touched) {
+              <span class="error-msg">El correo es obligatorio.</span>
+            }
+          </div>
+
+          <div class="form-group">
+            <label>Asunto</label>
+            <input
+              type="text"
+              name="asunto"
+              [(ngModel)]="mensaje.asunto"
+              placeholder="Asunto del mensaje"
+            />
+          </div>
+
+          <div class="form-group">
+            <label>Mensaje</label>
+            <textarea
+              name="mensaje"
+              [(ngModel)]="mensaje.mensaje"
+              required
+              rows="5"
+              placeholder="Escribe tu mensaje aquí..."
+              #mensajeRef="ngModel"
+              [class.error]="mensajeRef.invalid && mensajeRef.touched"
+            ></textarea>
+            @if (mensajeRef.invalid && mensajeRef.touched) {
+              <span class="error-msg">El mensaje es obligatorio.</span>
+            }
+          </div>
+
+          @if (error()) {
+            <p class="error-msg">{{ error() }}</p>
+          }
+
+          <button type="submit" class="btn-primary">Enviar mensaje</button>
+
+        </form>
+      }
+    </div>
+
+  </div>
+</div>

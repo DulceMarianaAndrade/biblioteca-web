@@ -1,1 +1,53 @@
-<p>carrito works!</p>
+<div class="seccion-titulo">
+  <h2>Carrito de Compras</h2>
+  <p>Revisa los libros que seleccionaste</p>
+</div>
+
+<div class="contenedor">
+  @if (carritoService.items().length === 0) {
+    <div class="vacio">
+      <p>Tu carrito está vacío.</p>
+      <a routerLink="/catalogo" class="btn-primary">Ver catálogo</a>
+    </div>
+  }
+
+  @if (carritoService.items().length > 0) {
+    <div class="carrito-layout">
+      <div class="lista-items">
+        @for (item of carritoService.items(); track item.libro.id) {
+          <div class="item-card card">
+            <img [src]="'imagenes/' + item.libro.imagen" [alt]="item.libro.nombre" class="item-img" />
+            <div class="item-info">
+              <h3>{{ item.libro.nombre }}</h3>
+              <p class="item-autor">{{ item.libro.autor }}</p>
+              <p class="item-precio">{{ item.libro.precio | currency:'MXN' }} por unidad</p>
+              <p class="item-cantidad">Cantidad: <strong>{{ item.cantidad }}</strong></p>
+              <p class="item-subtotal">
+                Subtotal: <strong>{{ item.libro.precio * item.cantidad | currency:'MXN' }}</strong>
+              </p>
+            </div>
+            <button class="btn-danger" (click)="carritoService.quitar(item.libro.id)">
+              Quitar
+            </button>
+          </div>
+        }
+      </div>
+
+      <div class="resumen card">
+        <h3>Resumen</h3>
+        <div class="resumen-linea">
+          <span>Total de libros:</span>
+          <strong>{{ carritoService.totalProductos() }}</strong>
+        </div>
+        <div class="resumen-linea total">
+          <span>Total:</span>
+          <strong>{{ carritoService.total() | currency:'MXN' }}</strong>
+        </div>
+        <button class="btn-primary" (click)="carritoService.limpiar()">
+          Vaciar carrito
+        </button>
+        <a routerLink="/catalogo" class="btn-secondary">Seguir comprando</a>
+      </div>
+    </div>
+  }
+</div>

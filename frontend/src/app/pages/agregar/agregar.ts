@@ -19,12 +19,13 @@ export class Agregar {
   form = this.fb.group({
     nombre: ['', Validators.required],
     categoria: ['', Validators.required],
-    marca: ['', Validators.required],
-    precio: [null, [Validators.required, Validators.min(0)]],
+    autor: ['', Validators.required],
+    edicion: ['', Validators.required],
+    precio: [null, [Validators.required, Validators.min(1)]],
     stock: [null, [Validators.required, Validators.min(0)]],
     imagen: ['', Validators.required],
     descripcion: ['', Validators.required],
-    disponible: [true]
+    disponibilidad: [true]
   });
 
   get f() {
@@ -36,7 +37,7 @@ export class Agregar {
     this.librosService.agregarLibro(this.form.value).subscribe({
       next: () => {
         this.enviado.set(true);
-        this.form.reset({ disponible: true });
+        this.form.reset({ disponibilidad: true });
       },
       error: () => {
         this.error.set('Hubo un error al guardar el libro.');

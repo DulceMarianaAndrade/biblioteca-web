@@ -34,9 +34,17 @@
 
         <div class="form-group">
           <label>Autor</label>
-          <input formControlName="marca" type="text" placeholder="Nombre del autor" />
-          @if (f['marca'].invalid && f['marca'].touched) {
+          <input formControlName="autor" type="text" placeholder="Nombre del autor" />
+          @if (f['autor'].invalid && f['autor'].touched) {
             <span class="error-msg">El autor es obligatorio.</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label>Edición</label>
+          <input formControlName="edicion" type="text" placeholder="Primera edición, 2024..." />
+          @if (f['edicion'].invalid && f['edicion'].touched) {
+            <span class="error-msg">La edición es obligatoria.</span>
           }
         </div>
 
@@ -76,7 +84,7 @@
 
         <div class="form-group form-check">
           <label>
-            <input formControlName="disponible" type="checkbox" />
+            <input formControlName="disponibilidad" type="checkbox" />
             Disponible
           </label>
         </div>

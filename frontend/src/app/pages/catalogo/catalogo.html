@@ -18,18 +18,18 @@
 
   <div class="grid-libros">
     @for (libro of libros(); track libro.id) {
-      <div class="card libro-card" [ngClass]="{'agotado': !libro.disponible}">
+      <div class="card libro-card" [ngClass]="{'agotado': !libro.disponibilidad}">
         <a [routerLink]="['/catalogo', libro.id]">
           <img [src]="'imagenes/' + libro.imagen" [alt]="libro.nombre" class="libro-img" />
         </a>
         <div class="libro-info">
           <span class="categoria">{{ libro.categoria | uppercase }}</span>
           <h3>{{ libro.nombre | titlecase }}</h3>
-          <p class="autor">{{ libro.marca }}</p>
+          <p class="autor">{{ libro.autor }}</p>
           <p class="descripcion">{{ libro.descripcion }}</p>
           <div class="libro-footer">
             <span class="precio">{{ libro.precio | currency:'MXN' }}</span>
-            @if (libro.disponible) {
+            @if (libro.disponibilidad) {
               <button class="btn-primary" (click)="agregarAlCarrito(libro)">Agregar</button>
             } @else {
               <span class="sin-stock">Agotado</span>
@@ -40,9 +40,3 @@
     }
   </div>
 </div>
-
-<!-- Cuando la página carga, cargando empieza en true, 
- entonces Angular muestra el mensaje "Cargando libros...". 
- Cuando el backend responde, 
- el código hace this.cargando.set(false) 
- y ese mensaje desaparece automáticamente y aparece la lista de libros.-->

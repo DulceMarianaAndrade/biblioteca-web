@@ -17,12 +17,13 @@
       <div class="detalle-info">
         <span class="categoria">{{ libro()!.categoria | uppercase }}</span>
         <h1>{{ libro()!.nombre | titlecase }}</h1>
-        <p class="autor">{{ libro()!.marca }}</p>
+        <p class="autor">{{ libro()!.autor }}</p>
+        <p class="edicion">Edición: {{ libro()!.edicion }}</p>
         <p class="descripcion">{{ libro()!.descripcion }}</p>
 
         <div class="detalle-meta">
           <span>Stock disponible: <strong>{{ libro()!.stock }}</strong></span>
-          @if (libro()!.disponible) {
+          @if (libro()!.disponibilidad) {
             <span class="disponible">Disponible</span>
           } @else {
             <span class="agotado">Agotado</span>
@@ -31,7 +32,7 @@
 
         <div class="detalle-footer">
           <span class="precio">{{ libro()!.precio | currency:'MXN' }}</span>
-          @if (libro()!.disponible) {
+          @if (libro()!.disponibilidad) {
             <button class="btn-primary" (click)="agregarAlCarrito()">
               Agregar al carrito
             </button>

@@ -1,0 +1,69 @@
+.contacto-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: 2rem;
+  margin-top: 1.5rem;
+  align-items: start;
+}
+
+.info-card {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  background-color: var(--cafe-oscuro);
+}
+
+.info-card h3 {
+  color: var(--rosa);
+  font-size: 1.2rem;
+}
+
+.info-card p {
+  color: var(--crema);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  color: var(--crema);
+  font-size: 0.9rem;
+}
+
+.info-label {
+  color: var(--rosa);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.form-card {
+  padding: 2rem;
+}
+
+.exito-msg {
+  text-align: center;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.exito-msg h3 {
+  color: var(--verde);
+}
+
+.exito-msg p {
+  color: var(--cafe-medio);
+}
+
+@media (max-width: 700px) {
+  .contacto-layout {
+    grid-template-columns: 1fr;
+  }
+}
