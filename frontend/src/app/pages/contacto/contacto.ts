@@ -1,10 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { LibrosService, Mensaje } from '../../services/libros';
+import { NgClass } from "../../../../node_modules/@angular/common/types/_common_module-chunk";
 
 @Component({
   selector: 'app-contacto',
-  imports: [FormsModule],
+  imports: [FormsModule, NgClass],
   templateUrl: './contacto.html',
   styleUrl: './contacto.css'
 })

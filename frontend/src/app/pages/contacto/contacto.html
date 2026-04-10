@@ -37,6 +37,10 @@
 
           <div class="form-group">
             <label>Nombre</label>
+
+            <!-- AÑADIMOS CLASE DE ERROR CON PROPERTY BINDING [class.error] SI EL CAMPO ES INVÁLIDO Y TOCADO -->
+            <!-- AÑADIMOS EVENT BINDING EN (blur) PARA VALIDAR AL SALIR DEL CAMPO -->
+            <!-- USO DE TWO-WAY BINDING [(ngModel)]-->
             <input
               type="text"
               name="nombre"
@@ -51,11 +55,13 @@
             }
           </div>
 
+          <!-- USO DE TWO-WAY BINDING [(ngModel)]-->
           <div class="form-group">
             <label>Correo</label>
             <input
               type="email"
               name="correo"
+              
               [(ngModel)]="mensaje.correo"
               required
               placeholder="tucorreo@ejemplo.com"

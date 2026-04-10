@@ -3,8 +3,12 @@ import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { LibrosService } from '../../services/libros';
 
+
+// FORMULARIO REACTIVO (REACTIVE FORMS) PARA AGREGAR UN NUEVO LIBRO, CON VALIDACIONES BÁSICAS
 @Component({
   selector: 'app-agregar',
+
+  //ROUTERLINK PARA VOLVER A LA LISTA DE LIBROS
   imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './agregar.html',
   styleUrl: './agregar.css'

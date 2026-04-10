@@ -25,11 +25,13 @@
 
   <div class="grid-libros">
     @for (libro of librosFiltrados(); track libro.id) {
+      <!--USO DE PROPERTY BINDIND [ ]-->
       <div class="card libro-card" [ngClass]="{'agotado': !libro.disponibilidad}">
         <a [routerLink]="['/catalogo', libro.id]">
-          <img [src]="'assets/' + libro.imagen.trim()" [alt]="libro.nombre" class="libro-img" />
+          <img [src]="'assets/' + libro.imagen.trim()" [alt]="libro.nombre" class="libro-img" /> <!--USO DE PROPERTY BINDIND [src]-->
         </a>
         <div class="libro-info">
+          <!--USO DE INTERPOLACION {{ }}-->
           <span class="categoria">{{ libro.categoria | uppercase }}</span>
           <h3>{{ libro.nombre | titlecase }}</h3>
           <p class="autor">{{ libro.autor }}</p>
