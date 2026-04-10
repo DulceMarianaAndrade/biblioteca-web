@@ -26,10 +26,16 @@
 
         <div class="form-group">
           <label>Categoría</label>
-          <input formControlName="categoria" type="text" placeholder="Novela, Ciencia, Historia..." />
-          @if (f['categoria'].invalid && f['categoria'].touched) {
-            <span class="error-msg">La categoría es obligatoria.</span>
-          }
+            <select formControlName="categoria">
+              <option value="">Selecciona una categoría</option>
+              <option value="Novela">Novela</option>
+              <option value="Ciencia Ficción">Ciencia Ficción</option>
+              <option value="Desarrollo Personal">Desarrollo Personal</option>
+              <option value="Negocios">Negocios</option>
+            </select>
+              @if (f['categoria'].invalid && f['categoria'].touched) {
+                <span class="error-msg">La categoría es obligatoria.</span>
+            }
         </div>
 
         <div class="form-group">
