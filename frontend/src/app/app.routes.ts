@@ -9,6 +9,8 @@ import { Contacto } from './pages/contacto/contacto';
 export const routes: Routes = [
     { path: '', component: Inicio },
     { path: 'catalogo', component: Catalogo },
+    //USO DE ROUTING: PARAMETROS DE RUTA... El :id es un parametro que se pasa a la ruta para mostrar el detalle del libro seleccionado
+    //Es una ruta dinámica que se adapta al id del libro que se quiere mostrar {path: 'catalogo/:id', component: Detalle}
     { path: 'catalogo/:id', component: Detalle },
     { path: 'agregar', component: Agregar },
     { path: 'carrito', component: Carrito },

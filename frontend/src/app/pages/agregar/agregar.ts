@@ -17,6 +17,7 @@ export class Agregar {
   fb = inject(FormBuilder);
   librosService = inject(LibrosService);
 
+  //USO DE SIGNALS PARA MANEJAR EL ESTADO DE ENVÍO Y ERRORES
   enviado = signal(false);
   error = signal('');
 

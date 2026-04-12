@@ -17,6 +17,7 @@ interface Imagen {
   styleUrl: './catalogo.css'
 })
 export class Catalogo implements OnInit {
+  //USO DE SIGNALS PARA MANEJAR EL ESTADO DE LOS LIBROS, CARGA Y ERRORES
   libros = signal<Libro[]>([]);
   cargando = signal(true);
   error = signal('');
@@ -26,7 +27,8 @@ export class Catalogo implements OnInit {
   carritoService = inject(CarritoService);
 
   ngOnInit() {
-    this.librosService.getLibros().subscribe({
+    // Uso de HttpClient, Observable y subscribe()
+    this.librosService.getLibros().subscribe({ //USO DE OBSERVABLES PARA OBTENER LOS LIBROS DESDE EL SERVICIO
       next: (data) => {
         this.libros.set(data);
         this.cargando.set(false);

@@ -23,10 +23,10 @@
               <!--USO DE INTERPOLACION {{ }}-->
               <h3>{{ item.libro.nombre }}</h3>
               <p class="item-autor">{{ item.libro.autor }}</p>
-              <p class="item-precio">{{ item.libro.precio | currency:'MXN' }} por unidad</p>
+              <p class="item-precio">{{ item.libro.precio | currency:'MXN' }} por unidad</p> <!-- USO DE PIPE CURRENCY -->
               <p class="item-cantidad">Cantidad: <strong>{{ item.cantidad }}</strong></p>
               <p class="item-subtotal">
-                Subtotal: <strong>{{ item.libro.precio * item.cantidad | currency:'MXN' }}</strong>
+                Subtotal: <strong>{{ item.libro.precio * item.cantidad | currency:'MXN' }}</strong> <!-- USO DE PIPE CURRENCY -->
               </p>
             </div>
             <!-- AÑADIMOS EVENT BINDING EN (click)-->

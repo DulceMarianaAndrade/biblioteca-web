@@ -8,6 +8,7 @@ export interface ItemCarrito {
 
 @Injectable({ providedIn: 'root' })
 export class CarritoService {
+  //USO DE SIGNALS PARA MANEJAR EL ESTADO DE LOS ITEMS EN EL CARRITO, TOTAL DE PRODUCTOS Y TOTAL A PAGAR
   items = signal<ItemCarrito[]>([]);
 
   totalProductos = computed(() =>

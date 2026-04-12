@@ -11,6 +11,7 @@ import { CarritoService } from '../../services/carrito';
   styleUrl: './detalle.css'
 })
 export class Detalle implements OnInit {
+  //USO DE SIGNALS PARA MANEJAR EL ESTADO DEL LIBRO, CARGA, ERRORES Y AGREGADO AL CARRITO
   libro = signal<Libro | null>(null);
   cargando = signal(true);
   error = signal('');

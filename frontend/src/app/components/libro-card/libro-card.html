@@ -1,3 +1,4 @@
+<p>libro-card works!</p>
 <!-- USO DE DIRECTIVA DE ATRIBUTOS [ngClass] -->
 <!-- USO DE PROPERTY BINDING [ ] -->
 <div class="card libro-card" [ngClass]="{'agotado': !libro.disponibilidad}">
@@ -6,12 +7,12 @@
   </a>
   <div class="libro-info">
     <!-- USO DE INTERPOLACION {{ }} -->
-    <span class="categoria">{{ libro.categoria | uppercase }}</span>
-    <h3>{{ libro.nombre | titlecase }}</h3>
+    <span class="categoria">{{ libro.categoria | uppercase }}</span> <!-- USO DE PIPE UPPERCASE -->
+    <h3>{{ libro.nombre | titlecase }}</h3> <!-- USO DE PIPE TITLECASE -->
     <p class="autor">{{ libro.autor }}</p>
     <p class="descripcion">{{ libro.descripcion }}</p>
     <div class="libro-footer">
-      <span class="precio">{{ libro.precio | currency:'MXN' }}</span>
+      <span class="precio">{{ libro.precio | currency:'MXN' }}</span> <!-- USO DE PIPE CURRENCY -->
       <!-- Directiva estructural @if (equivale a *ngIf) -->
       @if (libro.disponibilidad) {
         <!-- USO DE EVENT BINDING ( ) -->

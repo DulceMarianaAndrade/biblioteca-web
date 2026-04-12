@@ -11,7 +11,7 @@ import { LibrosService, Mensaje } from '../../services/libros';
 export class Contacto {
   librosService = inject(LibrosService);
 
-  enviado = signal(false);
+  enviado = signal(false); //USO DE SIGNALS PARA MANEJAR EL ESTADO DE ENVÍO Y ERRORES
   error = signal('');
 
   mensaje: Mensaje = {

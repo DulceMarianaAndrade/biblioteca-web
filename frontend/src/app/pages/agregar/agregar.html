@@ -14,7 +14,7 @@
     }
     <!-- AÑADIMOS EVENT BINDING EN (ngSubmit)="guardar()" -->
     @if (!enviado()) {
-      <form [formGroup]="form" (ngSubmit)="guardar()">
+      <form [formGroup]="form" (ngSubmit)="guardar()"> <!--USO DE FORMULARIOS REACTIVOS-->
 
         <div class="form-group">
           <label>Nombre</label>

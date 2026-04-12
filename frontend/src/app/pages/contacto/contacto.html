@@ -33,7 +33,7 @@
       }
 
       @if (!enviado()) {
-        <form #contactoForm="ngForm" (ngSubmit)="enviar()">
+        <form #contactoForm="ngForm" (ngSubmit)="enviar()"> <!--USO DE FORMULARIO POR TEMPLATE CON FormsModule y ngModel-->
 
           <div class="form-group">
             <label>Nombre</label>
