@@ -19,6 +19,7 @@
         <div class="form-group">
           <label>Nombre</label>
           <input formControlName="nombre" type="text" placeholder="Título del libro" />
+          <!-- Directiva estructural @if (equivale a *ngIf) because *ngIf is deprecated -->
           @if (f['nombre'].invalid && f['nombre'].touched) {
             <span class="error-msg">El nombre es obligatorio.</span>
           }
@@ -40,6 +41,7 @@
         <div class="form-group">
           <label>Autor</label>
           <input formControlName="autor" type="text" placeholder="Nombre del autor" />
+          <!-- Directiva estructural @if (equivale a *ngIf) because *ngIf is deprecated -->
           @if (f['autor'].invalid && f['autor'].touched) {
             <span class="error-msg">El autor es obligatorio.</span>
           }
@@ -57,6 +59,7 @@
           <div class="form-group">
             <label>Precio</label>
             <input formControlName="precio" type="number" placeholder="0.00" />
+            <!-- Directiva estructural @if (equivale a *ngIf) because *ngIf is deprecated -->
             @if (f['precio'].invalid && f['precio'].touched) {
               <span class="error-msg">Ingresa un precio válido.</span>
             }
@@ -74,6 +77,7 @@
         <div class="form-group">
           <label>Nombre de imagen</label>
           <input formControlName="imagen" type="text" placeholder="libro.jpg" />
+          <!-- Directiva estructural @if (equivale a *ngIf) because *ngIf is deprecated -->
           @if (f['imagen'].invalid && f['imagen'].touched) {
             <span class="error-msg">El nombre de imagen es obligatorio.</span>
           }

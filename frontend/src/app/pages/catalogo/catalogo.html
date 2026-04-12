@@ -17,35 +17,21 @@
   }
 
   <div class="botones">
-      <button (click)="filtrarCategoria('todas')">Todas</button>
-      <button (click)="filtrarCategoria('novela')">Novelas</button>
-      <button (click)="filtrarCategoria('ciencia ficción')">Ciencia Ficción</button>
-      <button (click)="filtrarCategoria('desarrollo personal')">Desarrollo Personal</button>
+    <!-- USO DE EVENT BINDING ( ) -->
+    <button (click)="filtrarCategoria('todas')">Todas</button>
+    <button (click)="filtrarCategoria('novela')">Novelas</button>
+    <button (click)="filtrarCategoria('ciencia ficción')">Ciencia Ficción</button>
+    <button (click)="filtrarCategoria('desarrollo personal')">Desarrollo Personal</button>
   </div>
 
   <div class="grid-libros">
+    <!-- Directiva estructural @for (equivale a *ngFor) -->
     @for (libro of librosFiltrados(); track libro.id) {
-      <!--USO DE PROPERTY BINDIND [ ]-->
-      <div class="card libro-card" [ngClass]="{'agotado': !libro.disponibilidad}">
-        <a [routerLink]="['/catalogo', libro.id]">
-          <img [src]="'assets/' + libro.imagen.trim()" [alt]="libro.nombre" class="libro-img" /> <!--USO DE PROPERTY BINDIND [src]-->
-        </a>
-        <div class="libro-info">
-          <!--USO DE INTERPOLACION {{ }}-->
-          <span class="categoria">{{ libro.categoria | uppercase }}</span>
-          <h3>{{ libro.nombre | titlecase }}</h3>
-          <p class="autor">{{ libro.autor }}</p>
-          <p class="descripcion">{{ libro.descripcion }}</p>
-          <div class="libro-footer">
-            <span class="precio">{{ libro.precio | currency:'MXN' }}</span>
-            @if (libro.disponibilidad) {
-              <button class="btn-primary" (click)="agregarAlCarrito(libro)">Agregar</button>
-            } @else {
-              <span class="sin-stock">Agotado</span>
-            }
-          </div>
-        </div>
-      </div>
+      <!-- USO DE @Input() y @Output() mediante app-libro-card -->
+      <app-libro-card
+        [libro]="libro"
+        (agregarAlCarrito)="agregarAlCarrito($event)">
+      </app-libro-card>
     }
   </div>
 </div>

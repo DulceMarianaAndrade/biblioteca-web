@@ -13,6 +13,7 @@
     <li>
       <a routerLink="/carrito" routerLinkActive="activo" class="carrito-btn">
         🛒 Carrito
+        <!-- Directiva estructural @if (equivale a *ngIf) because *ngIf is deprecated -->
         @if (carrito.totalProductos() > 0) {
           <span class="badge">{{ carrito.totalProductos() }}</span>
         }
