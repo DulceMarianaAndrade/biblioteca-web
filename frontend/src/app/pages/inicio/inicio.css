@@ -1,21 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Merriweather:wght@300;400;700&display=swap');
+
 .hero {
   background-color: var(--cafe-oscuro);
   background-image: linear-gradient(135deg, var(--cafe-oscuro) 60%, var(--verde) 100%);
   color: var(--rosa);
-  padding: 5rem 2rem;
-  text-align: center;
+  padding: 4rem 3rem;
 }
 
-.hero-contenido h1 {
-  font-size: 2.8rem;
+.hero-contenido {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+.hero-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  flex: 1;
+}
+
+.titulo-principal {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 900;
   color: var(--rosa);
-  margin-bottom: 1rem;
+  line-height: 1.1;
+  letter-spacing: 2px;
 }
 
-.hero-contenido p {
-  font-size: 1.15rem;
+.hero-texto p {
+  font-family: 'Merriweather', serif;
+  font-size: 1.1rem;
   color: var(--crema);
-  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+.hero-logo {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-grande {
+  width: 320px;
+  height: 320px;
+  object-fit: contain;
 }
 
 .features {
@@ -32,11 +66,102 @@
 }
 
 .feature-card h3 {
+  font-family: 'Playfair Display', serif;
   margin-bottom: 0.8rem;
   color: var(--cafe-oscuro);
+  font-size: 1.2rem;
 }
 
 .feature-card p {
+  font-family: 'Merriweather', serif;
   color: var(--cafe-medio);
   line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+.carrusel-seccion {
+  margin-top: 3rem;
+  overflow: hidden;
+  padding-bottom: 2rem;
+}
+
+.carrusel-titulo {
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  font-size: 1.8rem;
+  color: var(--cafe-oscuro);
+  margin-bottom: 1.5rem;
+}
+
+.carrusel-track-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carrusel-track {
+  display: flex;
+  gap: 1.5rem;
+  animation: desplazar 35s linear infinite;
+  width: max-content;
+}
+
+.carrusel-track:hover {
+  animation-play-state: paused;
+}
+
+.carrusel-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.carrusel-img {
+  width: 200px;
+  height: 270px;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px var(--sombra);
+  transition: transform 0.2s;
+}
+
+.carrusel-img:hover {
+  transform: translateY(-4px);
+}
+
+.carrusel-nombre {
+  font-family: 'Merriweather', serif;
+  font-size: 0.75rem;
+  text-align: center;
+  color: var(--cafe-oscuro);
+  line-height: 1.4;
+}
+
+@keyframes desplazar {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.hero-texto .btn-primary {
+  width: fit-content;
+  padding: 0.6rem 1.8rem;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .hero-contenido {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .titulo-principal {
+    font-size: 2.5rem;
+  }
+
+  .logo-grande {
+    width: 200px;
+    height: 200px;
+  }
 }

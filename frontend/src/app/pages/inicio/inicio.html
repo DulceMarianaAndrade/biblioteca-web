@@ -1,8 +1,13 @@
 <section class="hero">
   <div class="hero-contenido">
-    <h1>LibroShpere</h1>
-    <p>Conectando mentes a través de grandes historias.</p>
-    <a routerLink="/catalogo" class="btn-primary">Ver Catálogo</a>
+    <div class="hero-texto">
+      <h1 class="titulo-principal">LibroSphere</h1>
+      <p>Conectando mentes a través de grandes historias.</p>
+      <a routerLink="/catalogo" class="btn-primary">Ver Catálogo</a>
+    </div>
+    <div class="hero-logo">
+      <img src="logo.jpg" alt="LibroSphere" class="logo-grande" />
+    </div>
   </div>
 </section>
 
@@ -18,5 +23,25 @@
   <div class="feature-card card">
     <h3>Contacto Directo</h3>
     <p>¿Tienes dudas o sugerencias? Escríbenos y te respondemos pronto.</p>
+  </div>
+</section>
+
+<section class="carrusel-seccion">
+  <h2 class="carrusel-titulo">Títulos Destacados</h2>
+  <div class="carrusel-track-wrapper">
+    <div class="carrusel-track">
+      @for (libro of libros(); track libro.id) {
+        <div class="carrusel-item">
+          <img [src]="'assets/' + libro.imagen" [alt]="libro.nombre" class="carrusel-img" />
+          <p class="carrusel-nombre">{{ libro.nombre }}</p>
+        </div>
+      }
+      @for (libro of libros(); track libro.id) {
+        <div class="carrusel-item">
+          <img [src]="'assets/' + libro.imagen" [alt]="libro.nombre" class="carrusel-img" />
+          <p class="carrusel-nombre">{{ libro.nombre }}</p>
+        </div>
+      }
+    </div>
   </div>
 </section>

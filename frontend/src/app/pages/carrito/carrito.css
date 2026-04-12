@@ -63,14 +63,54 @@
   font-size: 0.85rem;
 }
 
-.item-cantidad {
-  font-size: 0.9rem;
-  color: var(--gris-texto);
-}
-
 .item-subtotal {
   font-size: 0.95rem;
   color: var(--cafe-oscuro);
+}
+
+.item-acciones {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.contador {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.btn-contador {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: var(--cafe-oscuro);
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-contador:hover {
+  color: var(--verde);
+}
+
+
+.btn-contador:hover {
+  background: var(--cafe-medio);
+}
+
+.cantidad-num {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--cafe-oscuro);
+  min-width: 36px;
+  text-align: center;
 }
 
 .resumen {
@@ -112,7 +152,9 @@
     grid-template-columns: 80px 1fr;
   }
 
-  .item-card .btn-danger {
+  .item-card .item-acciones {
     grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: space-between;
   }
 }

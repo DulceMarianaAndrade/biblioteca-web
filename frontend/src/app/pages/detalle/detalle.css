@@ -101,6 +101,40 @@
   color: var(--cafe-medio);
 }
 
+.contador {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+}
+
+.btn-contador {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background: transparent;
+  color: var(--cafe-oscuro);
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-contador:hover {
+  color: var(--verde);
+}
+
+.cantidad {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--cafe-oscuro);
+  min-width: 36px;
+  text-align: center;
+}
+
 @media (max-width: 700px) {
   .detalle-card {
     grid-template-columns: 1fr;

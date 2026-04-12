@@ -11,11 +11,12 @@ import { CarritoService } from '../../services/carrito';
   styleUrl: './detalle.css'
 })
 export class Detalle implements OnInit {
-  //USO DE SIGNALS PARA MANEJAR EL ESTADO DEL LIBRO, CARGA, ERRORES Y AGREGADO AL CARRITO
   libro = signal<Libro | null>(null);
   cargando = signal(true);
   error = signal('');
   agregado = signal(false);
+  // USO DE SIGNAL para manejar cantidad seleccionada
+  cantidad = signal(1);
 
   route = inject(ActivatedRoute);
   librosService = inject(LibrosService);
@@ -35,11 +36,27 @@ export class Detalle implements OnInit {
     });
   }
 
+  aumentar() {
+    const libro = this.libro();
+    if (libro && this.cantidad() < libro.stock) {
+      this.cantidad.set(this.cantidad() + 1);
+    }
+  }
+
+  disminuir() {
+    if (this.cantidad() > 1) {
+      this.cantidad.set(this.cantidad() - 1);
+    }
+  }
+
   agregarAlCarrito() {
     const libro = this.libro();
     if (libro) {
-      this.carritoService.agregar(libro);
+      for (let i = 0; i < this.cantidad(); i++) {
+        this.carritoService.agregar(libro);
+      }
       this.agregado.set(true);
+      this.cantidad.set(1);
       setTimeout(() => this.agregado.set(false), 2000);
     }
   }

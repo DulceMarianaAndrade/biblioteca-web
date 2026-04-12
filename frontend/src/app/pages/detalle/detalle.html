@@ -30,6 +30,14 @@
           }
         </div>
 
+        @if (libro()!.disponibilidad) {
+          <div class="contador">
+            <button class="btn-contador" (click)="disminuir()">-</button>
+            <span class="cantidad">{{ cantidad() }}</span>
+            <button class="btn-contador" (click)="aumentar()">+</button>
+          </div>
+        }
+
         <div class="detalle-footer">
           <span class="precio">{{ libro()!.precio | currency:'MXN' }}</span>
           @if (libro()!.disponibilidad) {

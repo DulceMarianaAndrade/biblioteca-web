@@ -11,7 +11,6 @@
     </div>
   }
 
-  <!-- Directiva estructural @for (equivale a *ngFor) ya que *ngFor are deprecated -->
   @if (carritoService.items().length > 0) {
     <div class="carrito-layout">
       <div class="lista-items">
@@ -19,20 +18,24 @@
           <div class="item-card card">
             <img [src]="'assets/' + item.libro.imagen" [alt]="item.libro.nombre" class="item-img" />
             <div class="item-info">
-
               <!--USO DE INTERPOLACION {{ }}-->
               <h3>{{ item.libro.nombre }}</h3>
               <p class="item-autor">{{ item.libro.autor }}</p>
-              <p class="item-precio">{{ item.libro.precio | currency:'MXN' }} por unidad</p> <!-- USO DE PIPE CURRENCY -->
-              <p class="item-cantidad">Cantidad: <strong>{{ item.cantidad }}</strong></p>
+              <p class="item-precio">{{ item.libro.precio | currency:'MXN' }} por unidad</p>
               <p class="item-subtotal">
-                Subtotal: <strong>{{ item.libro.precio * item.cantidad | currency:'MXN' }}</strong> <!-- USO DE PIPE CURRENCY -->
+                Subtotal: <strong>{{ item.libro.precio * item.cantidad | currency:'MXN' }}</strong>
               </p>
             </div>
-            <!-- AÑADIMOS EVENT BINDING EN (click)-->
-            <button class="btn-danger" (click)="carritoService.quitar(item.libro.id)">
-              Quitar
-            </button>
+            <div class="item-acciones">
+              <div class="contador">
+                <button class="btn-contador" (click)="carritoService.quitarUno(item.libro.id)">-</button>
+                <span class="cantidad-num">{{ item.cantidad }}</span>
+                <button class="btn-contador" (click)="carritoService.agregar(item.libro)">+</button>
+              </div>
+              <button class="btn-danger" (click)="carritoService.quitar(item.libro.id)">
+                Eliminar
+              </button>
+            </div>
           </div>
         }
       </div>
@@ -47,7 +50,6 @@
           <span>Total:</span>
           <strong>{{ carritoService.total() | currency:'MXN' }}</strong>
         </div>
-        <!-- AÑADIMOS EVENT BINDING EN (click)-->
         <button class="btn-primary" (click)="carritoService.limpiar()">
           Vaciar carrito
         </button>

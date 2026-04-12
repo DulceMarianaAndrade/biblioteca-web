@@ -31,6 +31,19 @@ export class CarritoService {
     }
   }
 
+  quitarUno(id: number) {
+    const actual = this.items();
+    const item = actual.find(i => i.libro.id === id);
+    if (!item) return;
+    if (item.cantidad === 1) {
+      this.items.set(actual.filter(i => i.libro.id !== id));
+    } else {
+      this.items.set(actual.map(i =>
+        i.libro.id === id ? { ...i, cantidad: i.cantidad - 1 } : i
+      ));
+    }
+  }
+
   quitar(id: number) {
     this.items.set(this.items().filter(i => i.libro.id !== id));
   }
