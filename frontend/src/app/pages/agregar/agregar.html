@@ -12,7 +12,7 @@
         <a routerLink="/catalogo" class="btn-primary">Ver catálogo</a>
       </div>
     }
-    <!-- AÑADIMOS EVENT BINDING EN (ngSubmit)="guardar()" -->
+    <!-- AÑADIMOS EVENT BINDING EN (ngSubmit)="guardar()"  -->
     @if (!enviado()) {
       <form [formGroup]="form" (ngSubmit)="guardar()"> <!--USO DE FORMULARIOS REACTIVOS-->
 
