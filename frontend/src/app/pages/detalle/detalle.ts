@@ -1,16 +1,17 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { CurrencyPipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
-import { LibrosService, Libro } from '../../services/libros';
+import { CurrencyPipe, TitleCasePipe, UpperCasePipe, CommonModule } from '@angular/common'; // Uso de CommonModule para ngIf y ngFors
+import { LibrosService, Libro } from '../../services/libros'; //Uso de la interfaz Libro para tipar el estado del libro
 import { CarritoService } from '../../services/carrito';
 
 @Component({
   selector: 'app-detalle',
-  imports: [RouterLink, CurrencyPipe, TitleCasePipe, UpperCasePipe],
+  imports: [RouterLink, CurrencyPipe, TitleCasePipe, UpperCasePipe, CommonModule],
   templateUrl: './detalle.html',
   styleUrl: './detalle.css'
 })
 export class Detalle implements OnInit {
+  //USO DE SIGNALS PARA MANEJAR EL ESTADO DEL LIBRO, CARGA, ERRORES Y AGREGADO AL CARRITO
   libro = signal<Libro | null>(null);
   cargando = signal(true);
   error = signal('');
@@ -24,6 +25,7 @@ export class Detalle implements OnInit {
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
+    //USO DE OBSERVABLES PARA OBTENER EL LIBRO DESDE EL SERVICIO
     this.librosService.getLibroPorId(id).subscribe({
       next: (data) => {
         this.libro.set(data);

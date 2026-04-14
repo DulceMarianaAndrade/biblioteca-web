@@ -1,11 +1,13 @@
 <section class="hero">
   <div class="hero-contenido">
     <div class="hero-texto">
+      <!--USO DE ROUTERLINK PARA NAVEGAR AL CATÁLOGO-->
       <h1 class="titulo-principal">LibroSphere</h1>
       <p>Conectando mentes a través de grandes historias.</p>
       <a routerLink="/catalogo" class="btn-primary">Ver Catálogo</a>
     </div>
     <div class="hero-logo">
+      <!--USO DE PROPERTY BINDING [src] y [alt]-->
       <img src="assets/logo.jpg" alt="LibroSphere" class="logo-grande" />
     </div>
   </div>
@@ -30,18 +32,18 @@
   <h2 class="carrusel-titulo">Títulos Destacados</h2>
   <div class="carrusel-track-wrapper">
     <div class="carrusel-track">
-      @for (libro of libros(); track libro.id) {
-        <div class="carrusel-item">
-          <img [src]="'assets/' + libro.imagen" [alt]="libro.nombre" class="carrusel-img" />
-          <p class="carrusel-nombre">{{ libro.nombre }}</p>
-        </div>
-      }
-      @for (libro of libros(); track libro.id) {
-        <div class="carrusel-item">
-          <img [src]="'assets/' + libro.imagen" [alt]="libro.nombre" class="carrusel-img" />
-          <p class="carrusel-nombre">{{ libro.nombre }}</p>
-        </div>
-      }
+      <!-- USO DE DIRECTIVA ESTRUCTURAL *ngFor -->
+      <!-- USO DE PROPERTY BINDING [src] y [alt] -->
+      <div class="carrusel-item" *ngFor="let libro of libros()">
+        <img [src]="'assets/' + libro.imagen" [alt]="libro.nombre" class="carrusel-img" />
+        <!-- USO DE INTERPOLACION {{ }} -->
+        <p class="carrusel-nombre">{{ libro.nombre }}</p>
+      </div>
+      <!-- Segunda vuelta para efecto infinito del carrusel -->
+      <div class="carrusel-item" *ngFor="let libro of libros()">
+        <img [src]="'assets/' + libro.imagen" [alt]="libro.nombre" class="carrusel-img" />
+        <p class="carrusel-nombre">{{ libro.nombre }}</p>
+      </div>
     </div>
   </div>
 </section>

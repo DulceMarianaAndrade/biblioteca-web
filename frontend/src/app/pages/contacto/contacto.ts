@@ -1,17 +1,19 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { LibrosService, Mensaje } from '../../services/libros';
 
 @Component({
   selector: 'app-contacto',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './contacto.html',
   styleUrl: './contacto.css'
 })
 export class Contacto {
   librosService = inject(LibrosService);
 
-  enviado = signal(false); //USO DE SIGNALS PARA MANEJAR EL ESTADO DE ENVÍO Y ERRORES
+  //USO DE SIGNALS PARA MANEJAR EL ESTADO DE ENVÍO Y ERRORES
+  enviado = signal(false);
   error = signal('');
 
   mensaje: Mensaje = {

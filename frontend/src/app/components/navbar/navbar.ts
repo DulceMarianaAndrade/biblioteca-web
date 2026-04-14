@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common'; //USO DE CommonModule PARA USAR DIRECTIVAS COMO *ngIf 
+import { Component, inject,} from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CarritoService } from '../../services/carrito';
 

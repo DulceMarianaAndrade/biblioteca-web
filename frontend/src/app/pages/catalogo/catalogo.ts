@@ -1,6 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { CurrencyPipe, UpperCasePipe, TitleCasePipe, NgClass, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common'; // Importación de CommonModule para usar directivas comunes como *ngIf y *ngFor
 import { LibrosService, Libro } from '../../services/libros';
 import { CarritoService } from '../../services/carrito';
 import { LibroCard } from '../../components/libro-card/libro-card';
@@ -28,7 +27,8 @@ export class Catalogo implements OnInit {
 
   ngOnInit() {
     // Uso de HttpClient, Observable y subscribe()
-    this.librosService.getLibros().subscribe({ //USO DE OBSERVABLES PARA OBTENER LOS LIBROS DESDE EL SERVICIO
+    this.librosService.getLibros().subscribe({
+      //USO DE OBSERVABLES PARA OBTENER LOS LIBROS DESDE EL SERVICIO
       next: (data) => {
         this.libros.set(data);
         this.cargando.set(false);

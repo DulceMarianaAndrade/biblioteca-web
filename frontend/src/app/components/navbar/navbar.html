@@ -13,11 +13,9 @@
     <li><a routerLink="/contacto" routerLinkActive="activo">Contacto</a></li>
     <li>
       <a routerLink="/carrito" routerLinkActive="activo" class="carrito-btn">
-        🛒 Carrito
-        <!-- Directiva estructural @if (equivale a *ngIf) because *ngIf is deprecated -->
-        @if (carrito.totalProductos() > 0) {
-          <span class="badge">{{ carrito.totalProductos() }}</span>
-        }
+        &#128722; Carrito
+        <!-- USO DE DIRECTIVA ESTRUCTURAL *ngIf -->
+        <span class="badge" *ngIf="carrito.totalProductos() > 0">{{ carrito.totalProductos() }}</span>
       </a>
     </li>
   </ul>

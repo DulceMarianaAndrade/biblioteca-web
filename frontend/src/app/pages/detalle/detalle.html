@@ -1,56 +1,53 @@
 <div class="contenedor">
+  <!--USO DE ROUTERLINK PARA VOLVER AL CATÁLOGO-->
   <a routerLink="/catalogo" class="volver">Volver al catálogo</a>
 
-  @if (cargando()) {
-    <p class="estado-msg">Cargando libro...</p>
-  }
+  <!-- USO DE DIRECTIVA ESTRUCTURAL *ngIf -->
+  <p class="estado-msg" *ngIf="cargando()">Cargando libro...</p>
+  <p class="estado-msg error-msg" *ngIf="error()">{{ error() }}</p>
 
-  @if (error()) {
-    <p class="estado-msg error-msg">{{ error() }}</p>
-  }
-
-  @if (libro()) {
-    <div class="detalle-card">
-      <div class="detalle-imagen">
-        <img [src]="'assets/' + libro()!.imagen" [alt]="libro()!.nombre" />
-      </div>
-      <div class="detalle-info">
-        <span class="categoria">{{ libro()!.categoria | uppercase }}</span>
-        <h1>{{ libro()!.nombre | titlecase }}</h1>
-        <p class="autor">{{ libro()!.autor }}</p>
-        <p class="edicion">Edición: {{ libro()!.edicion }}</p>
-        <p class="descripcion">{{ libro()!.descripcion }}</p>
-
-        <div class="detalle-meta">
-          <span>Stock disponible: <strong>{{ libro()!.stock }}</strong></span>
-          @if (libro()!.disponibilidad) {
-            <span class="disponible">Disponible</span>
-          } @else {
-            <span class="agotado">Agotado</span>
-          }
-        </div>
-
-        @if (libro()!.disponibilidad) {
-          <div class="contador">
-            <button class="btn-contador" (click)="disminuir()">-</button>
-            <span class="cantidad">{{ cantidad() }}</span>
-            <button class="btn-contador" (click)="aumentar()">+</button>
-          </div>
-        }
-
-        <div class="detalle-footer">
-          <span class="precio">{{ libro()!.precio | currency:'MXN' }}</span>
-          @if (libro()!.disponibilidad) {
-            <button class="btn-primary" (click)="agregarAlCarrito()">
-              Agregar al carrito
-            </button>
-          }
-        </div>
-
-        @if (agregado()) {
-          <p class="confirmacion">Libro agregado al carrito.</p>
-        }
-      </div>
+  <div class="detalle-card" *ngIf="libro()">
+    <div class="detalle-imagen">
+      <!-- USO DE PROPERTY BINDING [ ] -->
+      <img [src]="'assets/' + libro()!.imagen" [alt]="libro()!.nombre" />
     </div>
-  }
+    <div class="detalle-info">
+      <!-- USO DE INTERPOLACION {{ }} -->
+      <!-- USO DE PIPE UPPERCASE -->
+      <span class="categoria">{{ libro()!.categoria | uppercase }}</span>
+      <!-- USO DE PIPE TITLECASE -->
+      <h1>{{ libro()!.nombre | titlecase }}</h1>
+      <p class="autor">{{ libro()!.autor }}</p>
+      <p class="edicion">Edición: {{ libro()!.edicion }}</p>
+      <p class="descripcion">{{ libro()!.descripcion }}</p>
+
+      <div class="detalle-meta">
+        <span>Stock disponible: <strong>{{ libro()!.stock }}</strong></span>
+        <!-- USO DE DIRECTIVA ESTRUCTURAL *ngIf -->
+        <span class="disponible" *ngIf="libro()!.disponibilidad">Disponible</span>
+        <span class="agotado" *ngIf="!libro()!.disponibilidad">Agotado</span>
+      </div>
+
+      <!-- USO DE DIRECTIVA ESTRUCTURAL *ngIf -->
+      <div class="contador" *ngIf="libro()!.disponibilidad">
+        <!-- USO DE EVENT BINDING ( ) -->
+        <button class="btn-contador" (click)="disminuir()">-</button>
+        <!-- USO DE INTERPOLACION {{ }} -->
+        <span class="cantidad">{{ cantidad() }}</span>
+        <button class="btn-contador" (click)="aumentar()">+</button>
+      </div>
+
+      <div class="detalle-footer">
+        <!-- USO DE PIPE CURRENCY -->
+        <span class="precio">{{ libro()!.precio | currency:'MXN' }}</span>
+        <!-- USO DE DIRECTIVA ESTRUCTURAL *ngIf -->
+        <button class="btn-primary" *ngIf="libro()!.disponibilidad" (click)="agregarAlCarrito()">
+          Agregar al carrito
+        </button>
+      </div>
+
+      <!-- USO DE DIRECTIVA ESTRUCTURAL *ngIf -->
+      <p class="confirmacion" *ngIf="agregado()">Libro agregado al carrito.</p>
+    </div>
+  </div>
 </div>

@@ -6,108 +6,86 @@
 <div class="contenedor">
   <div class="form-card card">
 
-    @if (enviado()) {
-      <div class="exito-msg">
-        <p>Libro registrado correctamente.</p>
-        <a routerLink="/catalogo" class="btn-primary">Ver catálogo</a>
+    <!-- USO DE DIRECTIVA ESTRUCTURAL *ngIf -->
+    <div class="exito-msg" *ngIf="enviado()">
+      <p>Libro registrado correctamente.</p>
+      <a routerLink="/catalogo" class="btn-primary">Ver catálogo</a>
+    </div>
+
+    <!-- AÑADIMOS EVENT BINDING EN (ngSubmit)="guardar()" -->
+    <!-- USO DE FORMULARIOS REACTIVOS -->
+    <form [formGroup]="form" (ngSubmit)="guardar()" *ngIf="!enviado()">
+
+      <div class="form-group">
+        <label>Nombre</label>
+        <input formControlName="nombre" type="text" placeholder="Título del libro" />
+        <!-- USO DE DIRECTIVA ESTRUCTURAL *ngIf -->
+        <span class="error-msg" *ngIf="f['nombre'].invalid && f['nombre'].touched">El nombre es obligatorio.</span>
       </div>
-    }
-    <!-- AÑADIMOS EVENT BINDING EN (ngSubmit)="guardar()"  -->
-    @if (!enviado()) {
-      <form [formGroup]="form" (ngSubmit)="guardar()"> <!--USO DE FORMULARIOS REACTIVOS-->
 
-        <div class="form-group">
-          <label>Nombre</label>
-          <input formControlName="nombre" type="text" placeholder="Título del libro" />
-          <!-- Directiva estructural @if (equivale a *ngIf) because *ngIf is deprecated -->
-          @if (f['nombre'].invalid && f['nombre'].touched) {
-            <span class="error-msg">El nombre es obligatorio.</span>
-          }
-        </div>
+      <div class="form-group">
+        <label>Categoría</label>
+        <select formControlName="categoria">
+          <option value="">Selecciona una categoría</option>
+          <option value="Novela">Novela</option>
+          <option value="Ciencia Ficción">Ciencia Ficción</option>
+          <option value="Desarrollo Personal">Desarrollo Personal</option>
+        </select>
+        <span class="error-msg" *ngIf="f['categoria'].invalid && f['categoria'].touched">La categoría es obligatoria.</span>
+      </div>
 
-        <div class="form-group">
-          <label>Categoría</label>
-            <select formControlName="categoria">
-              <option value="">Selecciona una categoría</option>
-              <option value="Novela">Novela</option>
-              <option value="Ciencia Ficción">Ciencia Ficción</option>
-              <option value="Desarrollo Personal">Desarrollo Personal</option>
-            </select>
-              @if (f['categoria'].invalid && f['categoria'].touched) {
-                <span class="error-msg">La categoría es obligatoria.</span>
-            }
-        </div>
+      <div class="form-group">
+        <label>Autor</label>
+        <input formControlName="autor" type="text" placeholder="Nombre del autor" />
+        <span class="error-msg" *ngIf="f['autor'].invalid && f['autor'].touched">El autor es obligatorio.</span>
+      </div>
 
+      <div class="form-group">
+        <label>Edición</label>
+        <input formControlName="edicion" type="text" placeholder="Primera edición, 2024..." />
+        <span class="error-msg" *ngIf="f['edicion'].invalid && f['edicion'].touched">La edición es obligatoria.</span>
+      </div>
+
+      <div class="form-fila">
         <div class="form-group">
-          <label>Autor</label>
-          <input formControlName="autor" type="text" placeholder="Nombre del autor" />
-          <!-- Directiva estructural @if (equivale a *ngIf) because *ngIf is deprecated -->
-          @if (f['autor'].invalid && f['autor'].touched) {
-            <span class="error-msg">El autor es obligatorio.</span>
-          }
+          <label>Precio</label>
+          <input formControlName="precio" type="number" placeholder="0.00" />
+          <span class="error-msg" *ngIf="f['precio'].invalid && f['precio'].touched">Ingresa un precio válido.</span>
         </div>
 
         <div class="form-group">
-          <label>Edición</label>
-          <input formControlName="edicion" type="text" placeholder="Primera edición, 2024..." />
-          @if (f['edicion'].invalid && f['edicion'].touched) {
-            <span class="error-msg">La edición es obligatoria.</span>
-          }
+          <label>Stock</label>
+          <input formControlName="stock" type="number" placeholder="0" />
+          <span class="error-msg" *ngIf="f['stock'].invalid && f['stock'].touched">Ingresa el stock.</span>
         </div>
+      </div>
 
-        <div class="form-fila">
-          <div class="form-group">
-            <label>Precio</label>
-            <input formControlName="precio" type="number" placeholder="0.00" />
-            <!-- Directiva estructural @if (equivale a *ngIf) because *ngIf is deprecated -->
-            @if (f['precio'].invalid && f['precio'].touched) {
-              <span class="error-msg">Ingresa un precio válido.</span>
-            }
-          </div>
+      <div class="form-group">
+        <label>Nombre de imagen</label>
+        <input formControlName="imagen" type="text" placeholder="libro.jpg" />
+        <span class="error-msg" *ngIf="f['imagen'].invalid && f['imagen'].touched">El nombre de imagen es obligatorio.</span>
+      </div>
 
-          <div class="form-group">
-            <label>Stock</label>
-            <input formControlName="stock" type="number" placeholder="0" />
-            @if (f['stock'].invalid && f['stock'].touched) {
-              <span class="error-msg">Ingresa el stock.</span>
-            }
-          </div>
-        </div>
+      <div class="form-group">
+        <label>Descripción</label>
+        <textarea formControlName="descripcion" rows="4" placeholder="Descripción breve del libro"></textarea>
+        <span class="error-msg" *ngIf="f['descripcion'].invalid && f['descripcion'].touched">La descripción es obligatoria.</span>
+      </div>
 
-        <div class="form-group">
-          <label>Nombre de imagen</label>
-          <input formControlName="imagen" type="text" placeholder="libro.jpg" />
-          <!-- Directiva estructural @if (equivale a *ngIf) because *ngIf is deprecated -->
-          @if (f['imagen'].invalid && f['imagen'].touched) {
-            <span class="error-msg">El nombre de imagen es obligatorio.</span>
-          }
-        </div>
+      <div class="form-group form-check">
+        <label>
+          <input formControlName="disponibilidad" type="checkbox" />
+          Disponible
+        </label>
+      </div>
 
-        <div class="form-group">
-          <label>Descripción</label>
-          <textarea formControlName="descripcion" rows="4" placeholder="Descripción breve del libro"></textarea>
-          @if (f['descripcion'].invalid && f['descripcion'].touched) {
-            <span class="error-msg">La descripción es obligatoria.</span>
-          }
-        </div>
+      <p class="error-msg" *ngIf="error()">{{ error() }}</p>
 
-        <div class="form-group form-check">
-          <label>
-            <input formControlName="disponibilidad" type="checkbox" />
-            Disponible
-          </label>
-        </div>
+      <div class="form-acciones">
+        <button type="submit" class="btn-primary">Guardar libro</button>
+        <a routerLink="/catalogo" class="btn-secondary">Cancelar</a>
+      </div>
 
-        @if (error()) {
-          <p class="error-msg">{{ error() }}</p>
-        }
-
-        <div class="form-acciones">
-          <button type="submit" class="btn-primary">Guardar libro</button>
-          <a routerLink="/catalogo" class="btn-secondary">Cancelar</a>
-        </div>
-
-      </form>
-    }
+    </form>
   </div>
 </div>
