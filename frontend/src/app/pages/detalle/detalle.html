@@ -50,4 +50,56 @@
       <p class="confirmacion" *ngIf="agregado()">Libro agregado al carrito.</p>
     </div>
   </div>
+
+  <!--GOOGLE BOOKS API IMPLEMENTADA-->
+  <div class="google-card" *ngIf="infoGoogle()">
+    <h3>Información adicional <small>vía Google Books</small></h3>
+
+    <div class="google-body">
+      
+      <img
+        *ngIf="infoGoogle().portada"
+        [src]="infoGoogle().portada"
+        alt="Portada Google Books"
+        class="google-portada"
+      />
+
+      <div class="google-datos">
+
+        <p *ngIf="infoGoogle().autores">
+          <strong>Autor(es):</strong> {{ infoGoogle().autores | titlecase }}
+        </p>
+
+        <p *ngIf="infoGoogle().editorial">
+          <strong>Editorial:</strong> {{ infoGoogle().editorial }}
+        </p>
+
+        <p *ngIf="infoGoogle().publicado">
+          <strong>Año:</strong> {{ infoGoogle().publicado }}
+        </p>
+
+        <p *ngIf="infoGoogle().paginas">
+          <strong>Páginas:</strong> {{ infoGoogle().paginas }}
+        </p>
+
+        <p *ngIf="infoGoogle().descripcion">
+          {{ infoGoogle().descripcion }}
+        </p>
+
+        <div *ngIf="infoGoogle().categorias?.length > 0">
+          <strong>Categorías:</strong>
+          <ul>
+            <li *ngFor="let cat of infoGoogle().categorias">{{ cat }}</li>
+          </ul>
+        </div>
+
+        <a *ngIf="infoGoogle().link" [href]="infoGoogle().link" target="_blank">
+          Ver en Google Books
+        </a>
+
+      </div>
+    </div>
+    <small class="google-fuente">Fuente: Google Books API</small>
+  </div>
+
 </div>

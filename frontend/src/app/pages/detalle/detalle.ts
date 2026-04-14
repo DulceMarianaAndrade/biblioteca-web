@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CurrencyPipe, TitleCasePipe, UpperCasePipe, CommonModule } from '@angular/common'; // Uso de CommonModule para ngIf y ngFors
 import { LibrosService, Libro } from '../../services/libros'; //Uso de la interfaz Libro para tipar el estado del libro
 import { CarritoService } from '../../services/carrito';
+import { GoogleBooksService } from '../../services/google-books.service';
 
 @Component({
   selector: 'app-detalle',
@@ -16,12 +17,17 @@ export class Detalle implements OnInit {
   cargando = signal(true);
   error = signal('');
   agregado = signal(false);
+
+  //SIGNAL PARA API DE GOOGLE BOOKS
+  infoGoogle = signal<any>(null);
+
   // USO DE SIGNAL para manejar cantidad seleccionada
   cantidad = signal(1);
 
   route = inject(ActivatedRoute);
   librosService = inject(LibrosService);
   carritoService = inject(CarritoService);
+  googleBooks = inject(GoogleBooksService);
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -30,6 +36,10 @@ export class Detalle implements OnInit {
       next: (data) => {
         this.libro.set(data);
         this.cargando.set(false);
+        this.googleBooks.buscarLibro(data.nombre).subscribe({
+          next: (info) => this.infoGoogle.set(info),
+          error: () => {} // si falla Google Books, no pasa nada
+        });
       },
       error: () => {
         this.error.set('No se pudo cargar el libro.');

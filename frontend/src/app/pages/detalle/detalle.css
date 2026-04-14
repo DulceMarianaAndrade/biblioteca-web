@@ -140,3 +140,89 @@
     grid-template-columns: 1fr;
   }
 }
+
+.google-card {
+  margin-top: 2rem;
+  background: var(--blanco);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px var(--sombra);
+  padding: 2rem;
+}
+
+.google-card h3 {
+  color: var(--cafe-oscuro);
+  font-size: 1.1rem;
+  margin-bottom: 1.2rem;
+}
+
+.google-card h3 small {
+  font-size: 0.75rem;
+  color: var(--cafe-medio);
+  margin-left: 6px;
+  font-weight: 400;
+}
+
+.google-body {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.google-portada {
+  width: 100px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 10px var(--sombra);
+}
+
+.google-datos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--gris-texto);
+}
+
+.google-datos p {
+  line-height: 1.6;
+}
+
+.google-datos strong {
+  color: var(--cafe-oscuro);
+}
+
+.google-datos ul {
+  margin: 0.25rem 0 0 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.google-datos a {
+  color: var(--verde);
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.google-datos a:hover {
+  color: var(--cafe-medio);
+}
+
+.google-fuente {
+  display: block;
+  margin-top: 1rem;
+  color: var(--cafe-medio);
+  font-size: 0.75rem;
+  font-style: italic;
+}
+
+@media (max-width: 700px) {
+  .google-body {
+    flex-direction: column;
+  }
+
+  .google-portada {
+    width: 80px;
+  }
+}
