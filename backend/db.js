@@ -12,7 +12,7 @@ conexion.connect(err => {
     console.error('Error de conexión:', err);
     return;
   }
-  console.log('Conectado a MySQL');
+  console.log('Conectado a BD LibroSphere');
 });
 
 module.exports = conexion;

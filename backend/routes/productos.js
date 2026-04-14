@@ -55,7 +55,7 @@ router.post('/', validarProducto, (req, res) => {
     if (err) {
       return res.status(500).json(err);
     }
-    res.json({ mensaje: 'Producto agregado correctamente' });
+    res.json({ mensaje: 'Producto creado con éxito' });
   });
 });
 
@@ -79,7 +79,7 @@ router.post('/contacto', validarMensaje, (req, res) => {
     if (err) {
       return res.status(500).json(err);
     }
-    res.json({ mensaje: 'Mensaje enviado correctamente' });
+    res.json({ mensaje: 'Mensaje enviado con éxito' });
   });
 });
 

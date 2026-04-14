@@ -22,7 +22,7 @@ const validarProducto = (req, res, next) => {
     });
   }
 
-  next(); // TODO OK, sigue al endpoint
+  next();
 };
 
 module.exports = validarProducto;
