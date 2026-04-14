@@ -1,11 +1,11 @@
-import { CommonModule } from '@angular/common'; //USO DE CommonModule PARA USAR DIRECTIVAS COMO *ngIf 
-import { Component, inject,} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CarritoService } from '../../services/carrito';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })
