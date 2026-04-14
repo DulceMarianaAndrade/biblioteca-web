@@ -12,7 +12,7 @@ interface Imagen {
 
 @Component({
   selector: 'app-catalogo',
-  imports: [RouterLink, CurrencyPipe, UpperCasePipe, TitleCasePipe, NgClass, CommonModule, LibroCard],
+  imports: [CommonModule, LibroCard],
   templateUrl: './catalogo.html',
   styleUrl: './catalogo.css'
 })
