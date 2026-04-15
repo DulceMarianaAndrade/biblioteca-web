@@ -30,18 +30,18 @@ export class LibrosService {
 
   //USO DE SERVICIOS Y HTTPCLIENT: Aqui se definen los metodos para consumir la API REST del backend (GET, POST)
   getLibros(): Observable<Libro[]> { //GET /productos y uso de OBSERVABLES PARA OBTENER LOS LIBROS DESDE EL SERVICIO
-    return this.http.get<Libro[]>(`${this.apiUrl}/productos`);
+    return this.http.get<Libro[]>(`${this.apiUrl}/api/productos`);
   }
 
   getLibroPorId(id: number): Observable<Libro> {// GET /productos/:id
-    return this.http.get<Libro>(`${this.apiUrl}/productos/${id}`);
+    return this.http.get<Libro>(`${this.apiUrl}/api/productos/${id}`);
   }
 
   agregarLibro(libro: any): Observable<any> {// POST /productos
-    return this.http.post(`${this.apiUrl}/productos`, libro);
+    return this.http.post(`${this.apiUrl}/api/productos`, libro);
   }
 
   enviarMensaje(mensaje: Mensaje): Observable<any> {// POST /productos/contacto
-    return this.http.post(`${this.apiUrl}/productos/contacto`, mensaje);
+    return this.http.post(`${this.apiUrl}/api/productos/contacto`, mensaje);
   }
 }
