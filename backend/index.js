@@ -8,7 +8,7 @@ app.use(express.json());
 
 //Rutas que se van a utilizar
 const productosRoutes = require('./routes/productos');
-app.use('/productos', productosRoutes);
+app.use('/api/productos', productosRoutes);
 
 const PORT = process.env.PORT || 3000;
 
