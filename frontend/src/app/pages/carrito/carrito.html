@@ -29,7 +29,13 @@
             <!-- USO DE EVENT BINDING ( ) -->
             <button class="btn-contador" (click)="carritoService.quitarUno(item.libro.id)">-</button>
             <span class="cantidad-num">{{ item.cantidad }}</span>
-            <button class="btn-contador" (click)="carritoService.agregar(item.libro)">+</button>
+            <button 
+              class="btn-contador"
+              (click)="carritoService.agregar(item.libro)"
+              [disabled]="item.cantidad >= item.libro.stock"
+            >
+              +
+            </button>
           </div>
           <button class="btn-danger" (click)="carritoService.quitar(item.libro.id)">
             Eliminar
@@ -51,6 +57,7 @@
       <button class="btn-primary" (click)="carritoService.limpiar()">
         Vaciar carrito
       </button>
+      <button class="btn-primary" (click)="pagar()">Pagar</button>
       <a routerLink="/catalogo" class="btn-secondary">Seguir comprando</a>
     </div>
   </div>

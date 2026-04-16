@@ -25,6 +25,12 @@ export class Contacto {
 
   enviar() {
     if (!this.mensaje.nombre || !this.mensaje.correo || !this.mensaje.mensaje) return;
+    //validar email
+    if (!this.mensaje.correo.includes('@')){
+      this.error.set('Correo inválido');
+      return;
+    }
+    
     this.librosService.enviarMensaje(this.mensaje).subscribe({
       next: () => {
         this.enviado.set(true);

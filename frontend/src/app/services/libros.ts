@@ -45,4 +45,8 @@ export class LibrosService {
   enviarMensaje(mensaje: Mensaje): Observable<any> {// POST /productos/contacto
     return this.http.post(`${environment.apiUrl}/api/productos/contacto`, mensaje);
   }
+
+  comprar(productos: any[]) {
+    return this.http.post(`${environment.apiUrl}/api/productos/comprar`, { productos });
+  }
 }

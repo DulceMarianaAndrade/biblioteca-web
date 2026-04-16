@@ -18,8 +18,17 @@
     <div class="libro-footer">
       <span class="precio">{{ libro.precio | currency:'MXN' }}</span>
       <!-- USO DE DIRECTIVA ESTRUCTURAL *ngIf -->
-      <button class="btn-primary" *ngIf="libro.disponibilidad" (click)="agregar()">Agregar</button>
-      <span class="sin-stock" *ngIf="!libro.disponibilidad">Agotado</span>
+      <button 
+        class="btn-primary" 
+        *ngIf="libro.stock > 0" 
+        (click)="agregar()"
+      >
+        Agregar
+      </button>
+
+      <span class="sin-stock" *ngIf="libro.stock === 0">
+        Agotado
+      </span>
     </div>
   </div>
 </div>

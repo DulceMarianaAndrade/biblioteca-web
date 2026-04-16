@@ -135,4 +135,36 @@ router.delete('/:id', (req, res) => {
   });
 });
 
+//Para vaciar carrito al realizar una compra
+router.post('/comprar', (req, res) => {
+  const productos = req.body.productos;
+
+  if (!productos || productos.length === 0) {
+    return res.status(400).json({ error: 'No hay productos' });
+  }
+
+  let errores = [];
+
+  productos.forEach(p => {
+    db.query(
+      'UPDATE productos SET stock = stock - ? WHERE id = ? AND stock >= ?',
+      [p.cantidad, p.id, p.cantidad],
+      (err, result) => {
+        if (err || result.affectedRows === 0) {
+          errores.push(p.id);
+        }
+      }
+    );
+  });
+
+  if (errores.length > 0) {
+    return res.status(400).json({
+      error: 'Algunos productos no tienen stock suficiente',
+      productos: errores
+    });
+  }
+
+  res.json({ mensaje: 'Compra realizada' });
+});
+
 module.exports = router;

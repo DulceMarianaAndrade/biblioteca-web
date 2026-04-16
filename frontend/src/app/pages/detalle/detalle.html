@@ -22,28 +22,43 @@
       <p class="descripcion">{{ libro()!.descripcion }}</p>
 
       <div class="detalle-meta">
-        <span>Stock disponible: <strong>{{ libro()!.stock }}</strong></span>
+        <p *ngIf="libro()!.stock > 0">
+          Stock disponible: {{ libro()!.stock }}
+        </p>
+
+        <p *ngIf="libro()!.stock === 0" class="sin-stock">
+             
+        </p>
         <!-- USO DE DIRECTIVA ESTRUCTURAL *ngIf -->
-        <span class="disponible" *ngIf="libro()!.disponibilidad">Disponible</span>
-        <span class="agotado" *ngIf="!libro()!.disponibilidad">Agotado</span>
+        <span class="disponible" *ngIf="libro()!.stock > 0">Disponible</span>
+        <span class="agotado"*ngIf="libro()!.stock === 0">  </span>
       </div>
 
       <!-- USO DE DIRECTIVA ESTRUCTURAL *ngIf -->
-      <div class="contador" *ngIf="libro()!.disponibilidad">
+      <div class="contador" *ngIf="libro()!.stock > 0">
         <!-- USO DE EVENT BINDING ( ) -->
-        <button class="btn-contador" (click)="disminuir()">-</button>
+        <button class="btn-contador" (click)="disminuir()" [disabled]="cantidad() === 1 || agregado()">-</button>
         <!-- USO DE INTERPOLACION {{ }} -->
         <span class="cantidad">{{ cantidad() }}</span>
-        <button class="btn-contador" (click)="aumentar()">+</button>
+        <button class="btn-contador" (click)="aumentar()" [disabled]="cantidad() >= stockRestante() || stockRestante() === 0 || agregado()">+</button>
       </div>
 
       <div class="detalle-footer">
         <!-- USO DE PIPE CURRENCY -->
         <span class="precio">{{ libro()!.precio | currency:'MXN' }}</span>
         <!-- USO DE DIRECTIVA ESTRUCTURAL *ngIf -->
-        <button class="btn-primary" *ngIf="libro()!.disponibilidad" (click)="agregarAlCarrito()">
-          Agregar al carrito
+        <button 
+          class="btn-primary"
+          *ngIf="libro()!.stock > 0"
+          (click)="agregarAlCarrito()"
+          [disabled]="libro()!.stock === 0 || agregado()"
+        >
+          {{ agregado() ? 'Agregado' : 'Agregar al carrito' }}
         </button>
+
+        <span class="sin-stock agotado" *ngIf="libro()!.stock === 0">
+          Agotado
+        </span>
       </div>
 
       <!-- USO DE DIRECTIVA ESTRUCTURAL *ngIf -->

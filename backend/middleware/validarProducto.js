@@ -16,9 +16,9 @@ const validarProducto = (req, res, next) => {
   }
 
   //validar stock
-  if (stock < 0) {
+  if (stock <= 0) {
     return res.status(400).json({
-      error: 'El stock no puede ser negativo'
+      error: 'Sin stock disponible'
     });
   }
 
