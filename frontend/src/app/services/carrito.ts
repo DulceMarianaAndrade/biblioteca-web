@@ -19,6 +19,13 @@ export class CarritoService {
     this.items().reduce((acc, i) => acc + i.libro.precio * i.cantidad, 0)
   );
 
+  constructor() {
+    const data = localStorage.getItem('carrito');
+    if (data) {
+      this.items.set(JSON.parse(data));
+    }
+  }
+
   agregar(libro: Libro, cantidad: number = 1) {
     const actual = this.items();
     const existe = actual.find(i => i.libro.id === libro.id);
@@ -27,15 +34,20 @@ export class CarritoService {
       const nuevaCantidad = existe.cantidad + cantidad;
 
       // validar stock
-      if (nuevaCantidad > libro.stock) return;
+      if (nuevaCantidad > libro.stock) {
+        alert('No hay suficiente stock disponible');
+        return;
+      }
 
       this.items.set(actual.map(i =>
         i.libro.id === libro.id
           ? { ...i, cantidad: nuevaCantidad }
           : i
       ));
+      this.guardarCarrito();
     } else {
       this.items.set([...actual, { libro, cantidad }]);
+      this.guardarCarrito();
     }
   }
 
@@ -45,19 +57,23 @@ export class CarritoService {
     if (!item) return;
     if (item.cantidad === 1) {
       this.items.set(actual.filter(i => i.libro.id !== id));
+      this.guardarCarrito();
     } else {
       this.items.set(actual.map(i =>
         i.libro.id === id ? { ...i, cantidad: i.cantidad - 1 } : i
       ));
+      this.guardarCarrito();
     }
   }
 
   quitar(id: number) {
     this.items.set(this.items().filter(i => i.libro.id !== id));
+    this.guardarCarrito();
   }
 
   limpiar() {
     this.items.set([]);
+    this.guardarCarrito();
   }
 
   obtenerProductosParaCompra() {
@@ -70,5 +86,9 @@ export class CarritoService {
   obtenerCantidadPorLibro(id: number): number {
     const item = this.items().find(i => i.libro.id === id);
     return item ? item.cantidad : 0;
+  }
+
+  guardarCarrito() {
+    localStorage.setItem('carrito', JSON.stringify(this.items()));
   }
 }
